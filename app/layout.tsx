@@ -30,7 +30,7 @@ export default function RootLayout({
         <body
           className={cn(
             font.className,
-            "bg-white dark:bg-[#313338]"
+            "bg-white dark:bg-[#313338] min-h-screen"
         )}
         >
           <header className="flex justify-start items-center p-4 gap-4 h-16">

@@ -21,12 +21,17 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - .env.docker
+      - .env.local
+    environment:
+      - UPLOADTHING_TOKEN=eyJhcGlLZXkiOiJza19saXZlXzJkNjRhZmFlOTY0YTQ0NDI2MGQ5N2Y5ZDkwZTUzYmQ2OTgyNDk2MGE5MzlhZTMyMzY5ZDk3OTI1MmQ3NjYzZWMiLCJhcHBJZCI6IjI3djJlNTgyZGoiLCJyZWdpb25zIjpbInNlYTEiXX0=
+      - UPLOADTHING_APP_ID=27v2e582dj
+      - DATABASE_URL=postgresql://postgres:1unbelivablePASSWORD1@db:5432/myapp?schema=public
     depends_on:
       db:
         condition: service_healthy
     command: >
-      sh -c "sleep 10 &&
+      sh -c "rm -rf .next &&
+             sleep 10 &&
              bunx prisma generate &&
              bunx prisma migrate deploy &&
              bun run dev"
